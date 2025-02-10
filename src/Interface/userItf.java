@@ -8,8 +8,6 @@ public interface userItf extends Remote{
 
     public String getUserName() throws RemoteException;
 
-    public void putMessage(String message);
-
-    public String retreiveMessage();
+    public void putMessage(String message) throws RemoteException;
 
 }

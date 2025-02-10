@@ -13,21 +13,23 @@ public class ChatAppImpl implements ChatAppItf{
         connected = new Vector<>();
     }
 
-    public void connect(userItf client) {
+    public void connect(userItf client) throws RemoteException{
+        System.out.println(client.getUserName() + " has joined");
         connected.add(client);
     }
 
     @Override
-    public void disconnect(userItf client) {
+    public void disconnect(userItf client) throws RemoteException{
+        System.out.println(client.getUserName() + " has left");
         connected.remove(client);
     }
 
     @Override
     public void sendMessage(userItf client, String message) throws RemoteException {
-        history+=message+"\n";
-        for(userItf c : connected){
-            if(c != client) c.putMessage(client.getUserName() + " " +message);
-        }
+        String send = client.getUserName() + ": " + message;
+        System.out.println(send);
+        history+= send +"\n";
+        for(userItf c : connected){if(!c.getUserName().equals(client.getUserName()) ) c.putMessage(send);}
     }
 
     @Override
