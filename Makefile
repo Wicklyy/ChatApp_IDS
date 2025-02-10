@@ -1,30 +1,20 @@
-all : Info_itf Info_impl Hello Hellomlp HelloServer HelloClient 
+all : ChatAppitf userItf ServerChatApp Client 
 
-Hello:
-	javac -d classes -classpath .:classes src/Hello.java 
+userItf:
+	javac -d classes -classpath .:classes src/Interface/userItf.java
 	cd classes; \
-	jar cvf ../lib/Hello.jar Hello.class
+	jar cvf ../lib/userItf.jar Interface/userItf.class
 
-Info_itf:
-	javac -d classes -classpath .:classes src/Info_itf.java 
+ChatAppitf:
+	javac -d classes -classpath .:classes src/Interface/ChatAppItf.java
 	cd classes; \
-	jar cvf ../lib/Info_itf.jar Info_itf.class
+	jar cvf ../lib/ChatAppitf.jar Interface/ChatAppitf.class
 
-Hellomlp:
-	javac -d classes -classpath .:classes src/HelloImpl.java 
-	cd classes; \
-	jar cvf ../lib/HelloImpl.jar HelloImpl.class
+Client:
+	javac -d classes -cp .:classes:lib/Client.jar:lib/ src/Client.java
 
-Info_impl:
-	javac -d classes -classpath .:classes src/Info_impl.java 
-	cd classes; \
-	jar cvf ../lib/Info_impl.jar Info_impl.class
-
-HelloServer:
-	javac -d classes -cp .:classes:lib/Hello.jar:lib/HelloImpl.jar src/HelloServer.java
-
-HelloClient: 
-	javac -d classes -cp .:classes:lib/Hello.jar src/HelloClient.java
+ServerChatApp:
+	javac -d classes -cp .:classes:lib/ServerChatApp.jar:lib/ src/ServerChatApp.java
 
 
 clean:
