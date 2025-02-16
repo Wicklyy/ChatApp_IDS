@@ -57,7 +57,7 @@ public class Main extends JFrame{
 
     public static void main(String[] args){
         if (args.length < 3) {
-	   System.out.println("Usage: java HelloClient <rmiregistry host> <rmiregistry port> <username>");
+	   System.out.println("Usage: java Main <rmiregistry host> <rmiregistry port> <username>");
 	   return;}
         SwingUtilities.invokeLater(new Runnable() {
             public void run(){

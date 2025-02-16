@@ -48,4 +48,6 @@ ServerChatApp:
 
 
 clean:
-	rm classes/* classes/*/* classes/*/*/* lib/*
+	-rm classes/* classes/*/* classes/*/*/* lib/*
+	-rm historique_Chan historique_Message
+	touch historique_Chan historique_Message
