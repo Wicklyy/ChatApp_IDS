@@ -17,7 +17,7 @@ public class Chanel {
     }
 
     boolean contains(String name){
-        return connected.get(name) == true;
+        return connected.get(name)!=null && connected.get(name) == true;
     }
 
     void add(userItf client){
