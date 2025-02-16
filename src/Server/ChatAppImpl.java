@@ -31,8 +31,8 @@ public class ChatAppImpl implements ChatAppItf{
         recover();
         try{
             // FileOutputStream outPerson = new FileOutputStream("historique_Person");
-            FileOutputStream outChan = new FileOutputStream("historique_Chan");
-            FileOutputStream outMes = new FileOutputStream("historique_Message");
+            FileOutputStream outChan = new FileOutputStream("historique_Chan",true);
+            FileOutputStream outMes = new FileOutputStream("historique_Message",true);
             // psP = new PrintStream(outPerson, true, StandardCharsets.UTF_8);
             psC = new PrintStream(outChan, true, StandardCharsets.UTF_8);
             psM = new PrintStream(outMes, true, StandardCharsets.UTF_8);
@@ -82,7 +82,7 @@ public class ChatAppImpl implements ChatAppItf{
                 for(Chanel ch : chanels){
                     if(ch.name.equals(chan)) {
                         ch.connected.put(name,true);
-                        ch.history += name+ " " + message;
+                        ch.history += name+ " " + message+'\n';
                     }
                 }
             }
