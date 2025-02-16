@@ -3,14 +3,14 @@ Da cunha Mateo
 //put the classpath righ
 export CLASSPATH=$CLASSPATH:./classes
 
-//launch rmiregistry on mandelbrot on port 6091
-rmiregistry 6091 &
+//launch rmiregistry on mandelbrot on port 6090
+rmiregistry 6090 &
 
 //launch the server
-java -Djava.rmi.server.hostname=localhost  -cp classes Server/ServerChatApp 6091
+java -Djava.rmi.server.hostname=localhost -cp classes Server/ServerChatApp 6090
 
 //launch the client
 java -cp classes/ Client/ClientChatApp localhost 6091 <username>
 
 //launch UI
-java -cp classes Client/Main
+java -cp classes Client/Main localhost 6090 <username>

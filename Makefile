@@ -1,15 +1,24 @@
-all : userItf ChatAppitf userImpl Chat ChatList ChatAppImpl ServerChatApp ClientChatApp Main
+all : userItf Chanel ChatAppitf ClientChatApp Chat ChatList userImpl ChatAppImpl  ServerChatApp Main
 
+Chanel:
+	javac -d classes -classpath .:classes src/Server/Chanel.java
+	cd classes; \
+	jar cvf ../lib/Chanel.jar Server/Chanel.class
+
+ClientChatApp:
+	javac -d classes -classpath .:classes src/Client/ClientChatApp.java
+	cd classes; \
+	jar cvf ../lib/ClientChatApp.jar Client/ClientChatApp.class
 
 Chat:
 	javac -d classes -classpath .:classes src/Client/UI/Chat.java
 	cd classes; \
-	jar cvf ../lib/userItf.jar Client/UI/Chat.class
+	jar cvf ../lib/Chat.jar Client/UI/Chat.class
 
 ChatList:
 	javac -d classes -classpath .:classes src/Client/UI/ChatList.java
 	cd classes; \
-	jar cvf ../lib/userItf.jar Client/UI/ChatList.class
+	jar cvf ../lib/ChatList.jar Client/UI/ChatList.class
 
 userItf:
 	javac -d classes -classpath .:classes src/Interface/userItf.java
@@ -34,12 +43,9 @@ userImpl:
 Main:
 	javac -d classes -cp .:classes:lib/Main.jar:lib/ src/Client/Main.java
 
-ClientChatApp:
-	javac -d classes -cp .:classes:lib/ClientChatApp.jar:lib/ src/Client/ClientChatApp.java
-
 ServerChatApp:
 	javac -d classes -cp .:classes:lib/Server/ServerChatApp.jar:lib/ src/Server/ServerChatApp.java
 
 
 clean:
-	rm classes/*/*/* lib/*
+	rm classes/* classes/*/* classes/*/*/* lib/*

@@ -1,5 +1,7 @@
 package Client.UI;
 
+import java.util.Vector;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -15,6 +17,7 @@ import javax.swing.JScrollPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+
 public class ChatList extends JPanel {
 
     Chat chat;
@@ -22,7 +25,7 @@ public class ChatList extends JPanel {
     private DefaultListModel<String> list;
     public JList<String> listName;
 
-    public ChatList(Chat chat) {
+    public ChatList(Chat chat, Vector<String> vectorList) {
         this.chat = chat;
         list = new DefaultListModel<String>();
         listName = new JList<>(list);
@@ -55,10 +58,11 @@ public class ChatList extends JPanel {
                 }
             }
         });
-
-        joinChat("General");
+        for(String s : vectorList) joinChat(s);
         
     }
+
+    
 
     @Override
     public Dimension getPreferredSize() {
@@ -66,8 +70,12 @@ public class ChatList extends JPanel {
     }
 
 
-    void joinChat(String chat){
-        list.addElement(chat);
+    public void addMessage(String chanel, String message){
+        chat.addMessage(chanel, message);
+    }
+
+    void joinChat(String name){
+        if(chat.joinChat(name)) list.addElement(name);
         repaint();
     }
 }

@@ -1,5 +1,7 @@
 package Client.UI;
 
+import Client.ClientChatApp;
+
 import java.util.HashMap;
 
 import javax.swing.JButton;
@@ -18,14 +20,16 @@ import java.awt.event.KeyListener;
 
 
 public class Chat extends JPanel{
+    ClientChatApp chatApp;
     JTextArea textArea;
     JScrollPane scrollPane;
     private JTextField message;
     HashMap<String,JTextArea> HashtextArea;
 
 
-    public Chat(){
+    public Chat(ClientChatApp chatApp){
         super();
+        this.chatApp = chatApp;
         setLayout(new BorderLayout());
         HashtextArea = new HashMap<>();
 
@@ -74,12 +78,14 @@ public class Chat extends JPanel{
     }
 
     void sendMessage(){
-        textArea.append(message.getText() + "\n");
+        chatApp.sendMessage(textArea.getName(), message.getText());
         message.setText("");
     }
 
-    void addMessage(String message){
-        textArea.append(message + "\n");
+    public void addMessage(String chanel ,String message){
+        JTextArea text = HashtextArea.get(chanel);
+        if(text == null) text = createTextArea(chanel);
+        text.append(message + "\n");
     }
     
     JTextArea createTextArea(String name){
@@ -88,6 +94,7 @@ public class Chat extends JPanel{
         text.setLineWrap(true);
         text.setName(name);
         HashtextArea.put(name,text);
+        text.append(chatApp.getHistory(name));
         return text;
     }
 
@@ -104,6 +111,11 @@ public class Chat extends JPanel{
         revalidate();
         repaint();
     }
+
+    boolean joinChat(String chat){
+        return chatApp.joinChat(chat);
+    }
+
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
     }
