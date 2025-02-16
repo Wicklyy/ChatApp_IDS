@@ -61,7 +61,7 @@ public class Main extends JFrame{
 	   return;}
         SwingUtilities.invokeLater(new Runnable() {
             public void run(){
-                new Main("name", args[0], Integer.parseInt(args[1]), args[2]).setVisible(true);
+                new Main(args[2] + " chat", args[0], Integer.parseInt(args[1]), args[2]).setVisible(true);
             }
         });
     }

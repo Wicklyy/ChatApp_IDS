@@ -34,8 +34,8 @@ public class ChatAppImpl implements ChatAppItf{
             FileOutputStream outChan = new FileOutputStream("historique_Chan",true);
             FileOutputStream outMes = new FileOutputStream("historique_Message",true);
             // psP = new PrintStream(outPerson, true, StandardCharsets.UTF_8);
-            psC = new PrintStream(outChan, true, StandardCharsets.UTF_8);
-            psM = new PrintStream(outMes, true, StandardCharsets.UTF_8);
+            psC = new PrintStream(outChan, true);
+            psM = new PrintStream(outMes, true);
         }
         catch(FileNotFoundException e){
             System.err.println(e);
@@ -144,7 +144,8 @@ public class ChatAppImpl implements ChatAppItf{
         chan.history += mess + "\n";
         psM.print(chan.name+" "+mess+"\n"); // Ecriture des messages dans l'historique
         for(userItf c : connected) {
-            if(chan.connected.get(c.getUserName()) == true) c.putMessage(send);
+
+            if(chan.connected.get(c.getUserName()) != null && chan.connected.get(c.getUserName()) == true) c.putMessage(send);
         }
     }
 
