@@ -11,3 +11,6 @@ java -Djava.rmi.server.hostname=localhost  -cp classes Server/ServerChatApp 6091
 
 //launch the client
 java -cp classes/ Client/ClientChatApp localhost 6091 <username>
+
+//launch UI
+java -cp classes Client/Main

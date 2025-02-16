@@ -1,5 +1,15 @@
-all : userItf ChatAppitf userImpl ChatAppImpl ServerChatApp ClientChatApp
+all : userItf ChatAppitf userImpl Chat ChatList ChatAppImpl ServerChatApp ClientChatApp Main
 
+
+Chat:
+	javac -d classes -classpath .:classes src/Client/UI/Chat.java
+	cd classes; \
+	jar cvf ../lib/userItf.jar Client/UI/Chat.class
+
+ChatList:
+	javac -d classes -classpath .:classes src/Client/UI/ChatList.java
+	cd classes; \
+	jar cvf ../lib/userItf.jar Client/UI/ChatList.class
 
 userItf:
 	javac -d classes -classpath .:classes src/Interface/userItf.java
@@ -21,6 +31,8 @@ userImpl:
 	cd classes; \
 	jar cvf ../lib/userImpl.jar Client/userImpl.class
 
+Main:
+	javac -d classes -cp .:classes:lib/Main.jar:lib/ src/Client/Main.java
 
 ClientChatApp:
 	javac -d classes -cp .:classes:lib/ClientChatApp.jar:lib/ src/Client/ClientChatApp.java
@@ -30,4 +42,4 @@ ServerChatApp:
 
 
 clean:
-	rm classes/*/* lib/*
+	rm classes/*/*/* lib/*
