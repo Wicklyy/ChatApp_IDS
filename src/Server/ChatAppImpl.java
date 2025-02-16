@@ -70,6 +70,7 @@ public class ChatAppImpl implements ChatAppItf{
                     chan+=(char)c;
                 }while ((c= (char) inM.read())!=' ');
 
+                c= (char) inM.read();
                 do {
                     name+=(char)c;
                 }while ((c= (char) inM.read())!=':');
